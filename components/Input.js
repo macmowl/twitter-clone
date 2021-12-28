@@ -5,6 +5,7 @@ import { Picker } from 'emoji-mart'
 import { addDoc, collection, serverTimestamp, updateDoc, doc } from "firebase/firestore";
 import { getDownloadURL, ref, uploadString } from "@firebase/storage";
 import { db, storage } from "../firebase";
+import { useSession } from "next-auth/react";
 
 const Input = () => {
     const [input, setInput] = useState("");
@@ -12,16 +13,17 @@ const Input = () => {
     const [showEmojis, setShowEmojis] = useState(false);
     const [loading, setLoading] = useState(false);
     const filePickerRef = useRef(null);
+    const { data: session } = useSession();
 
     const sendPost = async () => {
         if (loading) return;
         setLoading(true);
 
         const docRef = await addDoc(collection(db, 'posts'), {
-            // id: session.user.uid,
-            // username: session.user.name,
-            // userImg: session.user.image,
-            // tag: session.user.tag,
+            id: session.user.uid,
+            username: session.user.name,
+            userImg: session.user.image,
+            tag: session.user.tag,
             text: input,
             timestamp: serverTimestamp(),
         });
@@ -64,8 +66,8 @@ const Input = () => {
 
 
     return (
-        <div className={`border-b border-gray-700 p-3 flex space-x-3 overflow-y-scroll ${loading && "opacity-60"}`}>
-            <img src="https://lh3.googleusercontent.com/a/AATXAJwCsuneWAkKlHwMPxOmLNjFACEvbtN8QPwbUsZ-=s96-c" alt="" className="w-11 h-11 rounded-full cursor-pointer"/>
+        <div className={`border-b border-gray-700 p-3 flex space-x-3 overflow-y-scroll ${loading && "opacity-60"} scrollbar-hide`}>
+            <img src={session.user.image} alt={session.user.name} className="w-11 h-11 rounded-full cursor-pointer"/>
             <div className="w-full divide-y divide-gray-700">
                 <div className={`${selectedFile && "pb-7"} ${input && "space-y-2.5"}`}>
                     <textarea

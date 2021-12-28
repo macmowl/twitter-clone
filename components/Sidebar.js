@@ -10,8 +10,11 @@ import {
     DotsCircleHorizontalIcon
 } from '@heroicons/react/outline';
 import { HomeIcon } from '@heroicons/react/solid';
+import { useSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
 
 const Sidebar = () => {
+    const { data: session } = useSession();
     return (
         <div className="hidden sm:flex flex-col items-center xl:items-start xl:w-[340px] p-2 fixed h-full">
             <div className="flex items-center justify-center w-14 h-14 hoverAnimation p-0  xl:ml-24">
@@ -28,11 +31,11 @@ const Sidebar = () => {
                 <SidebarLink text="More" Icon={DotsCircleHorizontalIcon}/>
             </div>
             <button className="hidden xl:inline ml-auto bg-[#1D9BF0] text-white rounded-full w-56 h-[52px] text-lg font-bold shadow-md hover:bg-[#1a8Cd8]">Tweet</button>
-            <div className="text-[#D9D9D9] flex items-center justify-center hoverAnimation xl:ml-auto xl:-mr-5 mt-auto">
-                <img src="https://lh3.googleusercontent.com/a/AATXAJwCsuneWAkKlHwMPxOmLNjFACEvbtN8QPwbUsZ-=s96-c" alt="" className="w-10 h-10 rounded-full xl:mr-2.5"/>
+            <div className="text-[#D9D9D9] flex items-center justify-center hoverAnimation xl:ml-auto xl:-mr-5 mt-auto" onClick={signOut}>
+                <img src={session.user.image} alt={session.user.name} className="w-10 h-10 rounded-full xl:mr-2.5"/>
                 <div className="hidden xl:inline leading-5">
-                    <h4 className="font-bold">firebase 1985</h4>
-                    <p className="text-[#6E767D">@firebase1985</p>
+                    <h4 className="font-bold">{session.user.name}</h4>
+                    <p className="text-[#6E767D">{session.user.tag}</p>
                 </div>
                 <DotsCircleHorizontalIcon className="h-5 hidden xl:inline ml-10" />
             </div>
