@@ -4,6 +4,7 @@ import Feed from '../components/Feed'
 import Login from '../components/Login';
 import Modal from '../components/Modal';
 import Sidebar from '../components/Sidebar';
+import Widgets from '../components/Widgets';
 import { useRecoilState } from "recoil";
 import { modalState, postIdState } from "../atoms/modalAtom";
 
@@ -23,6 +24,10 @@ export default function Home({trendingResults, followResults, providers }) {
       <main className='bg-black min-h-screen flex max-w-[1500px] mx-auto'>
         <Sidebar />
         <Feed />
+        <Widgets
+            trendingResults={trendingResults}
+            followResults={followResults}
+          />
         {isOpen && <Modal />}
       </main>
     </div>
