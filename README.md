@@ -1,27 +1,36 @@
-# Next.js + Tailwind CSS Example
-
-This example shows how to use [Tailwind CSS](https://tailwindcss.com/) [(v3.0)](https://tailwindcss.com/blog/tailwindcss-v3) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
+# Twitter clone with NextJS, Tailwind, Firebase, NextAuth and Recoil
+ 
+ Sounds pretty cool
 
 ## Preview
 
-Preview the example live on [StackBlitz](http://stackblitz.com/):
-
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-tailwindcss)
-
-## Deploy your own
-
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss&project-name=with-tailwindcss&repository-name=with-tailwindcss)
+Preview the example live on [my demo](https://twitter-clone-lime-eight.vercel.app/):
 
 ## How to use
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+- Clone this repo on your computer.
+- Download and install Node.js
+- Create a project in Firebase console. You need to configure a new google user account because you'll need the Google ID and Secret.
+- Configure the Firestore database.
+- Create a .env.local on root project and add these variables:
+```
+GOOGLE_ID=bla
+GOOGLE_SECRET=bla
+NEXT_PUBLIC_FIREBASE_KEY=bla
+NEXT_PUBLIC_AUTH_DOMAIN=bla
+NEXT_PUBLIC_PROJECT_ID=bla
+NEXT_PUBLIC_STORAGE_BUCKET=bla
+NEXT_PUBLIC_MESSAGING_SENDER_ID=bla
+NEXT_PUBLIC_APP_ID=bla
+JWT_SECRET=bla
+NEXTAUTH_URL=http://localhost:3000
+```
+- and don't forget to replace bla by your firebase variables. You can choose whatever you want for the jwt secret
+
+- final step, open the terminal:
 
 ```bash
-npx create-next-app --example with-tailwindcss with-tailwindcss-app
-# or
-yarn create next-app --example with-tailwindcss with-tailwindcss-app
-```
+npm install
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+npm run dev
+```
